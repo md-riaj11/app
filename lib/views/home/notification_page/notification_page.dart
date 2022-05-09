@@ -1,0 +1,90 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../core/constants/constants.dart';
+import '../../../core/controllers/notifications/notification_local.dart';
+import '../../../core/models/notification_model.dart';
+import '../../../core/utils/ui_util.dart';
+import 'components/notification_tile.dart';
+import 'components/notifications_empty.dart';
+import 'dialogs/clear_notification.dart';
+
+class NotificationPage extends ConsumerWidget {
+  const NotificationPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final _notifications = ref.watch(localNotificationProvider);
+    final _controller = ref.read(localNotificationProvider.notifier);
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('notification'.tr()),
+            AppSizedBox.w10,
+            const Icon(IconlyLight.notification, size: 18),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              UiUtil.openDialog(
+                  context: context, widget: const ClearNotificationDialog());
+            },
+            icon: const Icon(IconlyLight.closeSquare),
+          )
+        ],
+      ),
+      body: SafeArea(
+        child: _notifications.map(
+          data: ((data) => data.value.isEmpty
+              ? const NotificationIsEmpty()
+              : NotificationsList(
+                  data: data.value,
+                  controller: _controller,
+                )),
+          error: (t) => Center(child: Text(t.toString())),
+          loading: (v) => const Center(child: CircularProgressIndicator()),
+        ),
+      ),
+    );
+  }
+}
+
+class NotificationsList extends StatelessWidget {
+  const NotificationsList({
+    Key? key,
+    required this.data,
+    required LocalNotificationNotifier controller,
+  })  : _controller = controller,
+        super(key: key);
+
+  final LocalNotificationNotifier _controller;
+  final List<NotificationModel> data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scrollbar(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.separated(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return NotificationDetailsWidget(
+              data: data[index],
+              onDelete: () {
+                _controller.deleteNotification(data[index]);
+              },
+            );
+          },
+          separatorBuilder: (context, index) => const Divider(),
+        ),
+      ),
+    );
+  }
+}
