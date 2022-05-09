@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "903072881224",
+    "project_id": "sohel-223a7",
+    "storage_bucket": "sohel-223a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903072881224:android:c78cadebabc9e8444a967d",
+        "android_client_info": {
+          "package_name": "com.sohel.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903072881224-e30397ob076385bf7b4t862suua1viuq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEjk9gw2f8XoUwQBrAym7qq4Qx94f06cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903072881224-e30397ob076385bf7b4t862suua1viuq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
