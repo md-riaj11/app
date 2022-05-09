@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class WPConfig {
   /// The Name of your app
-  static const String appName = 'bdjobdaily';
+  static const String appName = 'JobBangla';
 
   /// TODO: ADD YOUR App name here
 
   /// The url of your app, should not inclued any '/' slash or any 'https://' or 'http://'
   /// Otherwise it may break the compaitbility, And your website must be
   /// a wordpress website.
-  static const String url = 'bdjobdaily.com';
+  static const String url = 'bdjobdaily.xyz';
 
   /// TODO: ADD your website URL HERE
 
@@ -24,7 +24,7 @@ class WPConfig {
 
   /// Used for redirecting users to privacy terms & services on your website
   static const String termsAndServicesUrl =
-      'https://bdjobdaily.com/privacy-policy/';
+      'https://bdjobdaily.xyz/termsAndServices/';
 
   /// Link to app store rating page
   static const String appStoreRatingUrl = '';
